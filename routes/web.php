@@ -14,5 +14,6 @@
 Route::get('/', 'HomeController@index');
 
 // --------------- Administrator Controller ---------------
-Route::get('/admin/login', 'AdministratorController@index');
+Route::get('/admin/add_film', 'AdministratorController@index');
+Route::post('admin/save_film', 'AdministratorController@save_film');
 

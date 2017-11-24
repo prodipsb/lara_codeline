@@ -8,8 +8,14 @@
 </div>
 
 <a href=""><button>ADD FILM</button></a>
-
-{!! Form::open(array('url' => 'admin/add_film', 'method' => 'post', 'files' => true)) !!}
+<div class="content" align="center">
+    <h3><span style="color:red;">
+            @foreach ($errors->all() as $error)
+            {{ $error }} <br>
+             @endforeach
+        </span>
+    </h3>
+{!! Form::open(array('url' => 'admin/save_film', 'method' => 'post', 'files' => true)) !!}
 <table>
     <tr>
         <td>{!! Form::label('Name') !!}</td>
@@ -37,14 +43,18 @@
     </tr>
     <tr>
         <td>{!! Form::label('Genre') !!}</td>
-        <td>{!! Form::date('genre', null, array('required')) !!}</td>
+        <td>{!! Form::checkbox('genre[]', 'action'); !!} Action Film  {!! Form::checkbox('genre[]', 'horror'); !!} Horror Film {!! Form::checkbox('genre[]', 'adventure'); !!} Adventure Film {!! Form::checkbox('genre[]', 'romantic'); !!} Romantic Film</td>
     </tr>
     <tr>
         <td>{!! Form::label('Photo') !!}</td>
         <td>{!! Form::file('photo', null, array('required')) !!}</td>
+    </tr><br>
+    <tr>
+        <td></td>
+        <td>{!! Form::submit('Save') !!}</td>
     </tr>
 </table>
-
+</div>
 
 {!! Form::close() !!}
 

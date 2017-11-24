@@ -16,7 +16,7 @@
                             Add New Film
                         </button>
                     </a> |
-                    <a href="{{ URL::to('/admin/login') }}" target="blank">
+                    <a href="{{ URL::to('/add_film') }}" target="blank">
                         <button type="button" class="btn btn-info">
                             <span class="glyphicon glyphicon-erase" aria-hidden="true"></span>
                             Admin Panel
