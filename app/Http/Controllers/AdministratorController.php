@@ -58,4 +58,10 @@ class AdministratorController extends Controller
         return Redirect::back()->withErrors('');
         
     }
+    
+    
+    
+    
+    
+    
 }

@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\FilmModel;
+use App\CommentModel;
 use View;
 
 class HomeController extends Controller
@@ -22,7 +23,11 @@ class HomeController extends Controller
         $film_obj = new FilmModel;
         $film = $film_obj::where('slug', $slug)->first();
         
+        $comment = new CommentModel;
+        $comments = $comment::where('film_slug', $slug)->get();
+        
         View::share('film', $film);
+        View::share('comments', $comments);
         return view('film_details');
         
     }

@@ -7,7 +7,7 @@
     <h1>Admin Panel</h1>
 </div>
 
-<a href=""><button>ADD FILM</button></a>
+<div><a href="{{ URL::to('/') }}"><button>Visit Site</button></a></div>
 <div class="content" align="center">
     <h3><span style="color:Green;">
             @if(Session::has('s_mgs'))
