@@ -80,15 +80,13 @@
                         {{ $film->ticket }} Tk
                     </td>
                 </tr>
-                <tr>
-                    <td>
-                        {{ $film->description }}
-                    </td>
-                </tr>
+                
+               
+               
                     
                    
             </table>
-
+            <div style="width: 900px; text-align: justify;"> {{ $film->description }} </div>
         </div>
         
         @if(Session::has('user_id'))
@@ -97,7 +95,9 @@
                     @if(Session::has('s_mgs'))
                     {{ Session::get('s_mgs') }}
                     {{ Session::put('s_mgs', '') }}
-                    @endif
+        @endif
+        
+        
                 </span>
             </h3>
             {!! Form::open(array('url' => 'save_comment', 'method' => 'post')) !!}
@@ -128,6 +128,12 @@
         
         <div align="center">
             <h3>Comments(<?php echo count($comments);?>)</h3>
+            <?php
+            $user_id =Session::has('user_id');
+        ?>
+        @if(empty($user_id))
+         <h3><span style="color:Green;">LOgin For Comment</span> | <a href="{{ URL::to('/user/login') }}"><button type="button">Login</button></a></h3>
+        @endif
             <table>
             @foreach($comments as $comment)
                 <tr>

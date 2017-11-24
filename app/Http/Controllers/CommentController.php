@@ -19,8 +19,9 @@ class CommentController extends Controller
         $comment->name = $request->name;
         $comment->email = strtolower(trim(preg_replace('/\s+/','', $request->email)));
         $comment->comment = $request->comment;
+      //  dd($comment);
         $comment->save();
- 
+      //   dd($comment);
     Session::put('s_mgs', 'Thank You For Comment!');
     return redirect('details/'.$slug);
     }
