@@ -1,14 +1,8 @@
 <html>
     <head>
         <title>
-            Film | Codeline Page
+            {{ $film->title }} | Codeline Page
         </title>
-        <style>
-            .pagination {}
-            .pagination ul{}
-            .pagination ul li{display: inline; list-style: none;}
-            .pagination ul li a{padding: 5px}
-        </style>
     </head>
     <body>
 
@@ -40,7 +34,6 @@
         <div class="content" align="center">
             <table style="font-size: 22px;">
                
-                @foreach($films as $film)
                 
                 <div>
                     <a href="{{ URL('details/'.$film->slug) }}"><img src="{!! asset($film->photo) !!}" alt="{{ $film->title }}" /></a>
@@ -60,7 +53,7 @@
                 <tr>
                     <td>Realease Date :</td>
                     <td>
-                        {{ \Carbon\Carbon::parse($film->realease_date)->format('F j, Y')}} 
+                         {{ \Carbon\Carbon::parse($film->realease_date)->format('F j, Y')}} 
                     </td>
                 </tr>
                 <tr>
@@ -75,14 +68,20 @@
                         {{ $film->country }}
                     </td>
                 </tr>
-               
-                @endforeach
+                <tr>
+                    <td>Ticket Price :</td>
+                    <td>
+                        {{ $film->ticket }} Tk
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        {{ $film->description }}
+                    </td>
+                </tr>
                     
                    
             </table>
-            <div class="pagination">
-                        {!! $films->links() !!}
-            </div>            
 
         </div>
 

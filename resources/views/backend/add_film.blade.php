@@ -9,6 +9,12 @@
 
 <a href=""><button>ADD FILM</button></a>
 <div class="content" align="center">
+    <h3><span style="color:Green;">
+            @if(Session::has('s_mgs'))
+                 {{ Session::get('s_mgs') }}
+            @endif
+        </span>
+    </h3>
     <h3><span style="color:red;">
             @foreach ($errors->all() as $error)
             {{ $error }} <br>
@@ -39,7 +45,7 @@
     </tr>
     <tr>
         <td>{!! Form::label('Country') !!}</td>
-        <td>{!! Form::select('country', ['Canada' => 'CD', 'United State' => 'USA', 'Bangladesh' => 'BD', 'United Kingdom' => 'UK', 'Japan' => 'JP'], null, ['placeholder' => 'Please Select Your Country']) !!} </td>
+        <td>{!! Form::select('country', ['CD' => 'Canada', 'USA' => 'United State', 'BD' => 'Bangladesh', 'UK' => 'United Kingdom', 'JP' => 'Japan'], null, ['placeholder' => 'Please Select Your Country']) !!} </td>
     </tr>
     <tr>
         <td>{!! Form::label('Genre') !!}</td>

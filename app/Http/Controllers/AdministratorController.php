@@ -20,6 +20,14 @@ class AdministratorController extends Controller
       //  dd('ok');
         $data = array();
         $data['title'] = $request->title;
+        $slug = $request->title;
+        $filterUrl = '/[^\-\s\pN\pL\?]+/u';
+        $setHypenUrl = '/[\-\s]+/';
+        
+        $slug1 =preg_replace($filterUrl, '', mb_strtolower($slug, 'UTF-8'));
+        $slug2 =preg_replace($setHypenUrl, '-', $slug1);
+        $slugFinal = trim($slug2, '-');
+        $data['slug'] = $slugFinal;
      //   dd($request);
         $data['description'] = $request->description;
         
@@ -37,9 +45,7 @@ class AdministratorController extends Controller
         if (!empty($photo)) {
             
             $path = 'images/';
-            $extention = $photo->getClientOriginalExtension();
-            $orgname = $photo->getClientOriginalName();
-            $filename = $orgname.'.'.$extention;
+            $filename = $photo->getClientOriginalName();
             $film_photo = Image::make($request->file('photo'));
             $film_photo->resize(450, 250);
             $film_photo->save($path. $filename);

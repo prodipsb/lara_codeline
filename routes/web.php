@@ -12,8 +12,10 @@
 */
 
 Route::get('/', 'HomeController@index');
+Route::get('details/{slug}', 'HomeController@film_details')->where('slug', '[\w\d\-\_]+');
 
 // --------------- Administrator Controller ---------------
 Route::get('/admin/add_film', 'AdministratorController@index');
 Route::post('admin/save_film', 'AdministratorController@save_film');
+
 
