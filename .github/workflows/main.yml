@@ -1,0 +1,41 @@
+name: Lara Codeline
+
+on:
+  push:
+    branches:
+      - master  # Runs when code is pushed to the main branch
+  schedule:
+    - cron: '0 9,11 * * *' # Runs at 3 PM and 05 PM BD Time daily
+
+permissions: 
+  contents: write # Grants GitHub Actions write access
+
+jobs:
+  commit:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0 # Ensure full commit history is fetched
+
+      - name: Set up Git User
+        run: |
+          git config --global user.name "prodipsb"
+          git config --global user.email "prodip5080@gmail.com"
+
+      - name: Pull latest changes (Force Sync)
+        run: |
+          git fetch origin master
+          git reset --hard origin/master
+          git clean -fd
+
+      - name: Make a commit
+        run: |
+          echo "Last commit $(date)" >> lara-commit-log.txt
+          git add lara-commit-log.txt
+          git commit -m "Lara Codeline commit on $(date)" || exit 0
+
+      - name: Push changes
+        run: | 
+          git push origin master
